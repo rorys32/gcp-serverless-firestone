@@ -7,8 +7,8 @@ module "cloud_run" {
 }
 
 module "firestore" {
-  source          = "../../modules/firestore-database"
-  project_id      = var.project_id
-  region          = var.region
-  collection_name = "bjj-game-builder"
+  source         = "../../modules/firestore-database"
+  project        = var.project_id      # Matches module var "project"
+  location_id    = var.region          # Matches module var "location_id"
+  collection     = "bjj-game-builder"  # Matches module var "collection"
 }
