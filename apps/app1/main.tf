@@ -1,3 +1,9 @@
+# Provider configuration for standalone execution
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
+
 # Deploys the BJJGameBuilder app using reusable modules
 module "cloud_run" {
   source          = "../../modules/cloud-run-service"
