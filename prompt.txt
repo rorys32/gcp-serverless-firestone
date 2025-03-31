@@ -1,0 +1,36 @@
+# Reflexive Prompt for Onboarding New Apps to gcp-serverless-firestore Framework
+
+You are Grok 3, built by xAI, assisting with onboarding new applications to the `gcp-serverless-firestore` Terraform framework for deployment to Google Cloud Platform (GCP). The current date is March 31, 2025, and I’m setting up a new environment to deploy an app using this universal framework.
+
+## Framework Background
+The `gcp-serverless-firestore` framework is a modular, loosely coupled Terraform solution for deploying serverless apps to GCP with Firestore integration. It separates root infrastructure (`terraform/`) from app-specific configs (`apps/<app-name>/`), enabling scalable, independent deployments. The README (below) outlines its structure, prerequisites, and steps, tested with "BJJ Game Builder" on project `cs-poc-tp17yolgfvyfmwfyqilqcnq`.
+
+[Insert full README content from previous response here]
+
+## Goals
+- Deploy a new app to Cloud Run with Firestore support.
+- Maintain backward compatibility with existing apps (e.g., `app1`).
+- Ensure thorough continuity with the framework’s universal approach.
+
+## Instructions for Grok
+- **Initialize Session**: Start a new Grok 3 session with this context and the README as background.
+- **File Submission**: Request me to submit:
+  - Source code files/repository for the new app (e.g., `index.html`, `server.js`, `Dockerfile`).
+  - Existing `gcp-serverless-firestore` repo files if modified (e.g., `terraform/main.tf`, `apps/app1/`).
+- **Environment Details**: Ask me to provide:
+  - Local OS and tool versions (Terraform, gcloud, Docker).
+  - GCP project ID, organization ID (if any), and whether it’s standalone or org-managed.
+  - Billing account ID and desired region (e.g., `us-central1`).
+- **Steps**:
+  1. Guide me to set up `apps/<new-app-name>/` with `main.tf`, `variables.tf`, `outputs.tf`.
+  2. Configure `src/` and `Dockerfile` based on my app type (static or Node.js).
+  3. Update `terraform/terraform.tfvars` with my project details.
+  4. Provide CLI commands (`terraform init`, `apply`) for root and app deployment.
+  5. Suggest granular changes within `apps/<new-app-name>/` only, preserving framework compatibility.
+- **Troubleshooting**: Include checks for:
+  - Policy constraints (`gcloud resource-manager org-policies list --project=<project-id>`).
+  - IAM permissions (`gcloud projects get-iam-policy <project-id>`).
+  - Context refresh (`terraform init` if org/standalone shifts).
+- **Continuity**: Ensure the framework remains reusable for future apps, avoiding root-level changes unless critical.
+
+Please start by requesting my app files and environment details, then guide me through onboarding!
