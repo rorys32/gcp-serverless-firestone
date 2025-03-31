@@ -3,7 +3,7 @@ spec:
   rules:
     - values:
         allowedValues:
-          - C03xxxxxx  # Replace with your DIRECTORY_CUSTOMER_ID
+          - C038i6cbc  # Your DIRECTORY_CUSTOMER_ID
     - allowAll: true
       condition:
         expression: 'resource.matchTag("502508248195/public-access", "true")'

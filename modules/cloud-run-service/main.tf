@@ -1,8 +1,6 @@
-# Deploys a Cloud Run service
 resource "google_cloud_run_service" "service" {
   name     = var.service_name
   location = var.region
-
   template {
     spec {
       containers {
@@ -10,17 +8,11 @@ resource "google_cloud_run_service" "service" {
       }
     }
   }
-
-  traffic {
-    percent         = 100
-    latest_revision = true
-  }
 }
 
-# Allow unauthenticated access (for now—tighten later if needed)
 resource "google_cloud_run_service_iam_member" "public_access" {
   service  = google_cloud_run_service.service.name
-  location = google_cloud_run_service.service.location
+  location = var.region
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
