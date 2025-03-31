@@ -1,0 +1,6 @@
+credentials_file    = "~/gcp-credentials.json"
+organization_id     = "123456789012"
+billing_account_id  = "01A2B3-C4D5E6-F7G8H9"
+project_id          = "bjj-game-builder-2025"
+project_name        = "BJJ Game Builder 2025"
+region              = "us-central1"
