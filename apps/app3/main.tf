@@ -24,10 +24,9 @@ module "cloud_run" {
   depends_on      = [null_resource.build_and_push]
 }
 
-# Optional Firestore setup for future Node.js/Express support
+# Firestore setup with app-specific collection
 module "firestore" {
-  source         = "../../modules/firestore-database"
-  project        = var.project_id
-  location_id    = var.region
-  collection     = "${var.app_name}-data"
+  source     = "../../modules/firestore-database"
+  project    = var.project_id
+  collection = "${var.app_name}-data"
 }

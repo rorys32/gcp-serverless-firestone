@@ -13,7 +13,7 @@ variable "region" {
 variable "app_name" {
   description = "Name of the app service"
   type        = string
-  default     = "app1"
+  default     = "app3"
 }
 
 variable "app_source_path" {

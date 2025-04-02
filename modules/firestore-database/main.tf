@@ -1,16 +1,22 @@
-# Sets up Firestore in Native mode
+# Create (default) database only if it doesn’t exist; manage cautiously
 resource "google_firestore_database" "database" {
   project     = var.project
-  name        = "(default)"  # Default database name
-  location_id = var.location_id
+  name        = "(default)"
+  location_id = "us-central1"  # Hardcode to match project region; adjust if needed
   type        = "FIRESTORE_NATIVE"
+
+  # Prevent recreation or updates if already exists
+  lifecycle {
+    create_before_destroy = true  # Ensure new database creation doesn’t conflict
+    ignore_changes        = [name, location_id, type]  # Ignore if exists
+  }
 }
 
-# Creates a collection (placeholder—app will populate it)
+# Create app-specific collection in the (default) database
 resource "google_firestore_document" "initial_collection" {
   project     = var.project
   collection  = var.collection
   document_id = "init"
-  fields      = jsonencode({ "status" = { "stringValue" = "initialized" } })
+  fields      = jsonencode({ "initialized" = { "booleanValue" = true } })
   depends_on  = [google_firestore_database.database]
 }
