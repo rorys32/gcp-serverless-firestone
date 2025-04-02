@@ -19,5 +19,5 @@ variable "app_name" {
 variable "app_source_path" {
   description = "Local path to the app source repo"
   type        = string
-  default     = "../../../<<app-folder>>"
+  default     = "../../../songwriter-studio"
 }
