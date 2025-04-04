@@ -1,23 +1,45 @@
 variable "project_id" {
-  description = "The GCP project ID (from root)"
   type        = string
-  default     = "cs-poc-tp17yolgfvyfmwfyqilqcnq"
+  description = "GCP Project ID"
+}
+
+variable "project_number" {
+  type        = string
+  description = "GCP Project Number"
 }
 
 variable "region" {
-  description = "The GCP region (from root)"
   type        = string
-  default     = "us-central1"
+  description = "GCP Region"
 }
 
 variable "app_name" {
-  description = "Name of the app service"
   type        = string
-  default     = "app4"
+  description = "Application name"
 }
 
 variable "app_source_path" {
-  description = "Local path to the app source repo"
   type        = string
-  default     = "../../../utils/intake-wizards/vulnerability-intake-wizard"
+  description = "Path to app source code"
+}
+
+variable "container_image" {
+  type        = string
+  description = "Docker image URL"
+}
+
+variable "container_port" {
+  type        = number
+  description = "Port the container listens on"
+}
+
+variable "env_vars" {
+  type        = map(string)
+  description = "Environment variables for the container"
+  default     = {}
+}
+
+variable "backend_type" {
+  type        = string
+  description = "Backend type (e.g., json, firestore)"
 }

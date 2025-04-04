@@ -1,32 +1,27 @@
-# Explicitly define the Google provider for this module
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
-
-# Build and push Docker image to Google Container Registry (GCR)
+# Build and push Docker image
 resource "null_resource" "build_and_push" {
   provisioner "local-exec" {
     command = <<EOT
       cd ${var.app_source_path} &&
-      docker build -t gcr.io/${var.project_id}/${var.app_name}:latest . &&
-      docker push gcr.io/${var.project_id}/${var.app_name}:latest
+      docker build -t ${var.container_image} . &&
+      docker push ${var.container_image}
     EOT
   }
 }
 
-# Deploy to Cloud Run using the existing module
+# Deploy to Cloud Run using the module
 module "cloud_run" {
   source          = "../../modules/cloud-run-service"
   service_name    = var.app_name
   region          = var.region
-  container_image = "gcr.io/${var.project_id}/${var.app_name}:latest"
+  container_image = var.container_image
+  container_port  = var.container_port
+  env_vars        = var.env_vars
   depends_on      = [null_resource.build_and_push]
 }
 
-# Firestore setup with app-specific collection
-module "firestore" {
-  source     = "../../modules/firestore-database"
-  project    = var.project_id
-  collection = "${var.app_name}-data"
+# Output for app4
+output "service_url" {
+  description = "URL of the deployed Cloud Run service"
+  value       = module.cloud_run.service_url
 }
