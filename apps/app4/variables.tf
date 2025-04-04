@@ -13,12 +13,11 @@ variable "region" {
 variable "app_name" {
   description = "Name of the app service"
   type        = string
-  default     = "{{app-number
-  }}"
+  default     = "app4"
 }
 
 variable "app_source_path" {
   description = "Local path to the app source repo"
   type        = string
-  default     = "../../../{{app-path}"
+  default     = "../../../utils/intake-wizards/vulnerability-intake-wizard"
 }

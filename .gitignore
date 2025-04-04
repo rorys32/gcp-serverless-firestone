@@ -1,6 +1,6 @@
+.DS_Store
 .terraform/
 .terraform.lock.hcl
-.DS_Store
 apps/app1/.terraform
 apps/app1/.terraform.lock.hcl
 prod-hierarchy
